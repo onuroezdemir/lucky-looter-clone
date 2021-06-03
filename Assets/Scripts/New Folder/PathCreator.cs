@@ -5,12 +5,25 @@ using DG.Tweening;
 
 public class PathCreator : MonoBehaviour
 {
+    public enum StatePolice
+    {
+        wait= 0,
+        walk = 1
+    }
+
+    public StatePolice currentState;
+
     public Transform police;
 
     public List<GameObject> pathObjects;
 
     public List<Vector3> paths;
 
+    private bool isTurn = false;
+
+    private int currentPath =0;
+
+    [SerializeField] float speed = 2f;
 
     private void Awake()
     {
@@ -20,24 +33,48 @@ public class PathCreator : MonoBehaviour
         }
     }
 
-    private void Start()
+    private void Update()
     {
 
-        StartCoroutine(PoliceMovement());
-       
-        
+
+        MovePolice();
+
     }
 
-    IEnumerator PoliceMovement()
+    void MovePolice()
     {
-        for (int i = 0; i < paths.Count; i++)
+
+        if (police.position != paths[currentPath])
         {
-            police.transform.LookAt(paths[i]);
-            police.transform.DOLocalMove(paths[i], 2f, false);
+            Debug.Log(currentPath);
+            Vector3 pos = Vector3.MoveTowards(transform.position, paths[currentPath], speed * Time.deltaTime);
+            GetComponent<Rigidbody>().MovePosition(pos);
+            police.LookAt(paths[currentPath]);
+        }
+        else
+        {
+            if (!isTurn)
+            {
+                currentPath = (currentPath + 1);
+                if (currentPath == paths.Count - 1)
+                {
+                    isTurn = true;
+                }
+            }
+            else
+            {
+                currentPath = (currentPath - 1);
+                if (currentPath == 0)
+                {
+
+                    isTurn = false;
+                }
+            }
 
         }
-        yield return new WaitForSeconds(2f);
     }
+
+
 
 
 }
