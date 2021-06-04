@@ -25,8 +25,15 @@ public class PathCreator : MonoBehaviour
 
     [SerializeField] float speed = 2f;
 
+    float timer = 3;
+    private bool isStart = false;
+
+    Animator animatorPolice;
+
     private void Awake()
     {
+        animatorPolice = GetComponent<Animator>();
+
         for (int i = 0; i <pathObjects.Count; i++)
         {
             paths.Add(pathObjects[i].transform.position);
@@ -35,10 +42,14 @@ public class PathCreator : MonoBehaviour
 
     private void Update()
     {
+        MoveCheck();
 
+        if (currentState == StatePolice.walk)
+        {
+            MovePolice();
+        }
 
-        MovePolice();
-
+        CheckAnimation();
     }
 
     void MovePolice()
@@ -59,6 +70,7 @@ public class PathCreator : MonoBehaviour
                 if (currentPath == paths.Count - 1)
                 {
                     isTurn = true;
+                    isStart = true;
                 }
             }
             else
@@ -68,9 +80,45 @@ public class PathCreator : MonoBehaviour
                 {
 
                     isTurn = false;
+                    isStart = true;
                 }
             }
 
+        }
+    }
+
+    void MoveCheck()
+    {
+        if (isStart)
+        {
+            if (currentPath-1 == (paths.Count ) || currentPath-1 == 0)
+            {
+                if (timer >= 0)
+                {
+                    currentState = StatePolice.wait;
+                    timer -= Time.deltaTime;
+                }
+                else
+                {
+                    currentState = StatePolice.walk;
+                    timer = 3f;
+                    isStart = false;
+                }
+
+            }
+        }  
+    }
+
+    void CheckAnimation()
+    {
+        switch (currentState)
+        {
+            case StatePolice.wait:
+                animatorPolice.SetBool("isWalk", false);
+                break;
+            case StatePolice.walk:
+                animatorPolice.SetBool("isWalk", true);
+                break;
         }
     }
 
