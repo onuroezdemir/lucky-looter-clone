@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0ffaa0b7117ba8c47a9d05ae701d4b4d, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.0397643, g: 0.048891596, b: 0.06934719, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1955,7 +1955,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.7311321, g: 0.77013844, b: 1, a: 1}
+  m_Color: {r: 0.40450338, g: 0.41281277, b: 0.8490566, a: 1}
   m_Intensity: 2.54
   m_Range: 10
   m_SpotAngle: 30
@@ -9112,7 +9112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4b755dbff0ef2a4c959bc93642f759a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 0
   human: {fileID: 1581966859}
   box: {fileID: 2007665506}
   speed: 5
@@ -16100,6 +16099,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1181522265}
     m_Modifications:
+    - target: {fileID: 2225120484144068536, guid: 8362e17cfc352d64f87a5f7491e84174, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 601923a83d5463c4bb5ba6fc1a1b7ee4, type: 2}
     - target: {fileID: 2225120484146063736, guid: 8362e17cfc352d64f87a5f7491e84174, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Cardboard_Box_01

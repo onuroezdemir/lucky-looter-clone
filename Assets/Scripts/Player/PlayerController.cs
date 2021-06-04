@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
         run = 1
     }
 
-    public State currentState;
+    public static State currentState;
 
     public GameObject human;
     public GameObject box;

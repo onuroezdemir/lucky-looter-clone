@@ -6,7 +6,7 @@ public class ChaseStart : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && PlayerController.currentState != PlayerController.State.idle)
         {
             PoliceController.currentState = PoliceController.State.chase;
 
