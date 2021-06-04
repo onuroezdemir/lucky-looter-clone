@@ -16,8 +16,12 @@ public class PoliceAgentAI : MonoBehaviour
 
     private void Update()
     {
-        policeAgent.SetDestination(player.position);
-        transform.LookAt(player.transform);
+        if(player != null)
+        {
+            policeAgent.SetDestination(player.position);
+            transform.LookAt(player.transform);
+        }
+        
     }
 
 }
